@@ -1,0 +1,327 @@
+/************************************************************
+ * VARIABLES DE COLOR Y ESTILOS GLOBALES
+ ************************************************************/
+ :root {
+  --color-bg: #fafafa;           /* Fondo principal */
+  --color-text: #333;            /* Texto principal */
+  --color-primary: #6aaa64;      /* Verde estilo Wordle */
+  --color-present: #c9b458;      /* Amarillo estilo Wordle */
+  --color-absent: #787c7e;       /* Gris estilo Wordle */
+  --color-panel-bg: #fefefe;     /* Fondo del panel lateral */
+  --color-border: #ddd;          /* Para bordes suaves */
+  --color-hover: #ddd;           /* Fondo hover para botones */
+  --color-button-bg: #eee;       /* Fondo por defecto botones */
+  --border-radius: 4px;          /* Curvatura global */
+}
+
+/************************************************************
+ * ESTILOS GLOBALES
+ ************************************************************/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", Arial, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  margin: 20px;
+}
+
+/************************************************************
+ * LAYOUT PRINCIPAL
+ ************************************************************/
+.container {
+  max-width: 900px;
+  margin: 0 auto;            /* Centra el contenedor en la página */
+  display: flex;
+  flex-wrap: wrap;           /* Permite que los elementos se ajusten en distintas líneas */
+  gap: 20px;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/************************************************************
+ * SECCIÓN PRINCIPAL (MAIN SECTION)
+ ************************************************************/
+.main-section {
+  flex: 1 1 500px;
+}
+
+/************************************************************
+ * PANEL LATERAL (SIDE PANEL)
+ ************************************************************/
+.side-panel {
+  width: 250px;
+  background-color: var(--color-panel-bg);
+  border-left: 1px solid var(--color-border);
+  padding: 15px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/************************************************************
+ * PISTA INICIAL
+ ************************************************************/
+.pista-inicial {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 10px;
+  background-color: #f2f2f2; 
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: var(--border-radius);
+}
+
+/************************************************************
+ * CUADRÍCULA DE INTENTOS
+ ************************************************************/
+#grid {
+  margin-bottom: 10px;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 3px; /* Ajuste leve para mayor espacio entre filas */
+}
+
+/* Ajuste de las celdas (Wordle style) */
+.cell {
+  width: 2em;
+  height: 2em;
+  border: 1px solid #ccc;
+  margin-right: 2px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1.2em;
+  line-height: 2em;
+  background-color: #fff;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  border-radius: var(--border-radius);
+}
+
+/* Efecto hover leve en celdas (solo en dispositivos que soportan hover) */
+@media (hover: hover) and (pointer: fine) {
+  .cell:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Colores estilo Wordle */
+.correct {
+  background-color: var(--color-primary); 
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+.present {
+  background-color: var(--color-present);
+  color: #fff;
+  border-color: var(--color-present);
+}
+
+.absent {
+  background-color: var(--color-absent);
+  color: #fff;
+  border-color: var(--color-absent);
+}
+
+/************************************************************
+ * INPUTS Y BOTONES
+ ************************************************************/
+.input-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Para que los botones e input se ajusten en pantallas pequeñas */
+}
+
+#guessInput {
+  flex: 1 1 auto;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  min-width: 200px;
+}
+
+button {
+  padding: 10px 14px;
+  font-size: 1em;
+  cursor: pointer;
+  border: 1px solid #bbb;
+  background-color: var(--color-button-bg);
+  border-radius: var(--border-radius);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+/* Hover y focus para botones (accesibilidad) */
+@media (hover: hover) and (pointer: fine) {
+  button:hover {
+    background-color: var(--color-hover);
+    transform: scale(1.02);
+  }
+}
+
+button:focus {
+  outline: 2px solid var(--color-primary);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/************************************************************
+ * PISTAS EXTRAS
+ ************************************************************/
+#pistasExtras {
+  margin-top: 10px;
+  font-size: 0.95em;
+  color: #333;
+}
+
+#pistasExtras p {
+  margin: 0.5em 0;
+  padding: 4px 6px;
+  background-color: #fff;
+  border-left: 4px solid var(--color-present); /* Amarillo Wordle */
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+}
+
+/* Botón “Pedir pista” */
+#btnPedirPista {
+  margin-top: 10px;
+  width: 100%;
+  font-weight: bold;
+  background-color: #fafafa;
+  border-color: #ccc;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #btnPedirPista:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+/************************************************************
+ * EXPLICACIÓN
+ ************************************************************/
+#explicacionRefran {
+  margin-top: 1em;
+  font-size: 1em;
+  line-height: 1.4;
+  color: #444;
+}
+
+/************************************************************
+ * BARRA DE INFO (INTENTOS, PUNTUACIÓN, ETC.)
+ ************************************************************/
+#intentosRestantes,
+#puntuacion {
+  font-weight: bold;
+  font-size: 1.05em;
+  color: var(--color-text);
+  margin-top: 10px;
+}
+
+/************************************************************
+ * ANIMACIÓN "POP" PARA LAS CELDAS
+ ************************************************************/
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Aplicación de la animación a las celdas cuando se actualizan desde JS */
+.cell.anim-pop {
+  animation: pop 0.2s;
+}
+
+/************************************************************
+ * MEDIA QUERIES (RESPONSIVE)
+ ************************************************************/
+
+/* A partir de ~768px hacia abajo */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .side-panel {
+    width: 100%;
+    margin-top: 20px;
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .cell {
+    width: 1.8em;
+    height: 1.8em;
+    font-size: 1em;
+    line-height: 1.8em;
+  }
+
+  /* Ajuste de la cuadrícula para que no se desborde */
+  #grid {
+    overflow-x: auto;
+  }
+}
+
+/* Para pantallas muy pequeñas (menos de 480px) */
+@media screen and (max-width: 480px) {
+  .input-section {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  #guessInput,
+  button {
+    width: 100%;
+  }
+
+  .cell {
+    width: 1.6em;
+    height: 1.6em;
+    font-size: 0.9em;
+    line-height: 1.6em;
+  }
+
+  .side-panel {
+    margin-top: 20px;
+  }
+
+  h1 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+
+  /* Asegura que los botones no sean demasiado pequeños */
+  button {
+    padding: 12px 0;
+  }
+
+  /* Ajusta el tamaño del input para móviles */
+  #guessInput {
+    padding: 12px;
+    font-size: 1.1em;
+  }
+
+  /* Aumenta el tamaño de las pistas adicionales */
+  #pistasExtras p {
+    font-size: 1em;
+  }
+}

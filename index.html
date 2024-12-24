@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Refranle</title>
+  <!-- Si tienes un archivo CSS para estilos, enlázalo aquí -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Refranle</h1>
+
+  <!-- Contenedor principal -->
+  <div class="container">
+
+    <!-- Sección principal: pista inicial, grid, barra de info, input -->
+    <div class="main-section">
+      
+      <!-- Muestra la pista inicial (ej: primera letra de cada palabra) -->
+      <div id="pistaInicial" class="pista-inicial"></div>
+
+      <!-- Cuadrícula de intentos -->
+      <div id="grid"></div>
+
+      <!-- Barra de información: tiempo, intentos, puntuación -->
+      <div style="margin-bottom: 10px;">
+        <span>Tiempo restante: 
+          <span id="tiempoRestante">60</span> segundos
+        </span> 
+        <span style="margin-left: 15px;" id="intentosRestantes">Intento 1 de 6</span>
+        <span style="margin-left: 15px;">
+          Puntuación: <span id="puntuacion">0</span>
+        </span>
+      </div>
+
+      <!-- Input y botones de acción -->
+      <div class="input-section">
+        <input 
+          type="text" 
+          id="guessInput" 
+          maxlength="60" 
+          placeholder="Ingresa tu intento..."
+        />
+        <button id="btnEnviar">Enviar</button>
+        <button id="btnReiniciar">Reiniciar</button>
+        <button id="btnCompartir">Compartir</button>
+      </div>
+    </div>
+
+    <!-- Panel lateral: explicación y pistas adicionales -->
+    <aside class="side-panel">
+      <h3>Explicación</h3>
+      <p id="explicacionRefran"></p>
+
+      <h3>Pistas adicionales</h3>
+      <div id="pistasExtras"></div>
+      <button id="btnPedirPista">Pedir pista</button>
+    </aside>
+  </div>
+
+  <!-- Enlaza tu código JavaScript al final del body -->
+  <script src="app.js"></script>
+</body>
+</html>
